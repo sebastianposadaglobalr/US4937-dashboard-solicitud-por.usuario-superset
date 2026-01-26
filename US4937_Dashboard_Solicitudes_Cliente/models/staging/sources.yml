@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw
+    database: sigo_local
+    schema: main
+    tables:
+      - name: raw_solicitudes
+      - name: raw_atenciones

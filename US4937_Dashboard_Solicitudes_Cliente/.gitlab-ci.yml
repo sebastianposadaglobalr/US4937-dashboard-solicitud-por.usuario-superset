@@ -1,0 +1,25 @@
+stages:
+  - lint
+  - test
+  - deploy
+
+sqlfluff_lint:
+  stage: lint
+  image: python:3.9
+  script:
+    - pip install sqlfluff dbt-duckdb
+    - sqlfluff lint models/
+
+dbt_test_job:
+  stage: test
+  image: python:3.9
+  script:
+    - pip install dbt-duckdb
+    - dbt test
+
+deploy_to_prod:
+  stage: deploy
+  script:
+    - echo "Desplegando modelos a producción y enviando señal a Airflow..."
+  only:
+    - main
