@@ -1,0 +1,23 @@
+FROM apache/superset:latest
+
+USER root
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    default-libmysqlclient-dev \
+    pkg-config \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    /app/.venv/bin/python get-pip.py && \
+    rm get-pip.py
+
+RUN /app/.venv/bin/python -m pip install --no-cache-dir \
+    mysql-connector-python \
+    pymysql \
+    mysqlclient \
+    cryptography \
+    psycopg2-binary
+
+USER superset

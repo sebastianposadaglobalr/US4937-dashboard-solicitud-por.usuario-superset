@@ -1,0 +1,50 @@
+cubes:
+  - name: solicitudes
+    sql: >
+      SELECT * FROM solicitudes
+    
+    measures:
+      - name: count
+        type: count
+      
+      - name: active_requests
+        sql: id
+        type: count
+        filters:
+          - sql: status = 'active'
+
+    dimensions:
+      - name: id
+        sql: id
+        type: number
+        primary_key: true
+      
+      - name: created_at
+        sql: created_at
+        type: time
+      
+      - name: client_id
+        sql: client_id
+        type: number
+
+      - name: priority
+        sql: priority
+        type: string
+
+  - name: clientes
+    sql: SELECT * FROM clientes
+
+    dimensions:
+      - name: id
+        sql: id
+        type: number
+        primaryKey: true
+      
+      - name: name
+        sql: nombre
+        type: string
+
+    joins:
+      - name: requests
+        relationship: one_to_many
+        sql: "{CUBE}.id = {solicitudes}.client_id"

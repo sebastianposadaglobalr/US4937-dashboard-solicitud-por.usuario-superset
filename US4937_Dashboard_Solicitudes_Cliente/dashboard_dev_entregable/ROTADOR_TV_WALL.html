@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comsatel TV Wall - Arquitectura Senior</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #111; font-family: 'Segoe UI', sans-serif; }
+        iframe { width: 100%; height: 100%; border: none; background: #fff; }
+        #status { 
+            position: absolute; top: 10px; right: 10px; 
+            background: rgba(0, 80, 160, 0.9); color: white; 
+            padding: 8px 15px; border-radius: 20px; font-size: 13px;
+            z-index: 100; pointer-events: none; border: 1px solid #444;
+        }
+        .progress-bar {
+            position: absolute; top: 0; left: 0; height: 4px;
+            background: #00ffcc; z-index: 101; width: 0%;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="bar"></div>
+    <div id="status">Iniciando Sistema...</div>
+    <iframe id="main-frame" src=""></iframe>
+
+    <script>
+        // --- CONFIGURACIÓN ARQUITECTO SENIOR ---
+        // Usamos rutas relativas porque Nginx sirve este HTML y Superset en el mismo puerto (80)
+        const dashboards = [
+            { name: "HOY (Prioridad)", url: "/superset/dashboard/1/?standalone=3", time: 60000 },
+            { name: "SEMANA", url: "/superset/dashboard/2/?standalone=3", time: 30000 },
+            { name: "QUINCENA", url: "/superset/dashboard/3/?standalone=3", time: 30000 },
+            { name: "MES", url: "/superset/dashboard/4/?standalone=3", time: 30000 }
+        ];
+
+        let index = 0;
+        const frame = document.getElementById('main-frame');
+        const status = document.getElementById('status');
+        const bar = document.getElementById('bar');
+
+        function startRotation() {
+            const current = dashboards[index];
+            frame.src = current.url;
+            status.innerText = `Mostrando: ${current.name} (${current.time/1000}s)`;
+            
+            // Animación de barra
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.transition = `width ${current.time}ms linear`;
+                bar.style.width = '100%';
+            }, 50);
+
+            setTimeout(() => {
+                index = (index + 1) % dashboards.length;
+                startRotation();
+            }, current.time);
+        }
+
+        // Ejecutar primer dashboard
+        startRotation();
+    </script>
+</body>
+</html>

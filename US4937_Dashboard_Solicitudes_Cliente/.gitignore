@@ -1,0 +1,24 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# SQLite
+dashboard_dev_entregable/superset_home/superset.db-journal
+dashboard_dev_entregable/superset_home/*.log
+*.log
+
+# Environment variables
+.env
+dashboard_dev_entregable/.env
+
+# Temporary / OS files
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+
+# SQLite (We keep the main superset.db to not lose the dashboards, but ignore journals)
+!dashboard_dev_entregable/superset_home/superset.db

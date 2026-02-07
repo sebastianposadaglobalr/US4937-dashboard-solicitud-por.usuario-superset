@@ -1,0 +1,22 @@
+FROM apache/superset:latest
+
+USER root
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    default-libmysqlclient-dev \
+    pkg-config \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Asegurar que el venv tenga pip y las librerías
+RUN /app/.venv/bin/python3 -m ensurepip
+RUN /app/.venv/bin/python3 -m pip install --upgrade pip
+RUN /app/.venv/bin/python3 -m pip install --no-cache-dir \
+    mysqlclient \
+    pymysql \
+    mysql-connector-python \
+    cryptography \
+    psycopg2-binary
+
+USER superset

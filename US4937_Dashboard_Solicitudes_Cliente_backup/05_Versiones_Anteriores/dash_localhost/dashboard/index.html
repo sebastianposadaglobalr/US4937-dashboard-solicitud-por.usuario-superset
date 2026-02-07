@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comsatel | Service Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-main">
+            <div class="logo-area">
+                <img src="logo_comsatel_new.png" alt="Comsatel Logo" class="logo-img-vip">
+                <span class="divider"></span>
+                <div class="title-area">
+                    <h1>Dashboard Solicitudes por Cliente</h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-bar glass">
+            <div class="filter-group">
+                <label>Tipo Orden</label>
+                <select id="filter-type">
+                    <option value="all">TODOS</option>
+                    <option value="BASICO">BASICO</option>
+                    <option value="FLOTA">FLOTA</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Nombre Cliente</label>
+                <select id="filter-client">
+                    <option value="all">Elegir Cliente...</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Asesor</label>
+                <select id="filter-asesor">
+                    <option value="all">Elegir Asesor...</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Servicio</label>
+                <select id="filter-service">
+                    <option value="all">Elegir Servicio...</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="dashboard-content">
+            <div class="side-panel">
+                <h2>Indicadores de gestión por empresa</h2>
+                <div class="kpi-v-grid">
+                    <div class="kpi-v-card recibidas">
+                        <div class="kpi-label">Solicitudes Recibidas</div>
+                        <div class="kpi-val" id="kpi-received">0</div>
+                    </div>
+                    <div class="kpi-v-card programadas">
+                        <div class="kpi-label">Citas Programadas</div>
+                        <div class="kpi-val" id="kpi-scheduled">0</div>
+                    </div>
+                    <div class="kpi-v-card realizadas">
+                        <div class="kpi-icon">🛠️</div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Servicio realizadas</div>
+                            <div class="kpi-val" id="kpi-completed">0</div>
+                        </div>
+                    </div>
+                    <div class="kpi-v-card pendientes">
+                        <div class="kpi-icon">⚠️</div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Servicio pendientes</div>
+                            <div class="kpi-val" id="kpi-pending">0</div>
+                        </div>
+                    </div>
+                    <div class="kpi-v-card adicionales">
+                        <div class="kpi-label">Adicionales (Post-Corte)</div>
+                        <div class="kpi-val" id="kpi-adicionales">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-chart glass">
+                <div class="chart-header">
+                    <h2>Gestion de tiempo por servicio</h2>
+                    <div class="refresh-controls">
+                        <span id="lima-clock" class="lima-clock">🕐 Lima: --:--:--</span>
+                        <span id="refresh-info" class="refresh-time">Última actualización: --:--:--</span>
+                        <span id="countdown" class="countdown">Próxima en: 5:00</span>
+                        <button onclick="manualRefresh()" class="refresh-btn" title="Actualizar ahora">
+                            🔄 Actualizar
+                        </button>
+                    </div>
+                </div>
+                <div id="gantt-chart" class="chart-container">
+                    <div class="chart-wrapper">
+                        <div class="gantt-placeholder">Elegir filtros para ver datos...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

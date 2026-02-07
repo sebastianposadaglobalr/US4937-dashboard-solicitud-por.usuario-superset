@@ -1,0 +1,27 @@
+# Bridge Configuration
+# This file controls the settings for the Python TCP Bridge between Cube/Superset and MySQL.
+
+bridge:
+  # The interface to listen on (0.0.0.0 exposes it to the network)
+  bind_host: "0.0.0.0" 
+  # The port this bridge will listen on (to be accessed by Cube/Superset)
+  bind_port: 3307 
+
+target:
+  # The actual internal MySQL Server
+  host: "192.168.1.180"
+  port: 3306
+  # Connection timeout in seconds
+  timeout: 30
+
+security:
+  # Allowed IP addresses (e.g., Cube Cloud IPs). Leave empty to allow all (NOT RECOMMENDED for production).
+  # Cube Cloud Source IPs usually need to be whitelisted here if known.
+  allowed_ips: []
+  # Enable SSL wrapping if the target supports it but we want to terminate/re-encrypt (Advanced)
+  # For now, simplistic TCP passthrough.
+  ssl_enabled: false
+
+logging:
+  level: "INFO"
+  file: "bridge_activity.log"

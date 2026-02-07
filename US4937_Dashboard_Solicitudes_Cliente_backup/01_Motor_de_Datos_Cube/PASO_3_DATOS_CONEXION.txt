@@ -1,0 +1,30 @@
+========================================================================
+Paso 3: DATOS DE CONEXION (Infanible)
+========================================================================
+
+IMPORTANTE: Asegurese de haber ejecutado "FIX_DRIVER.bat" antes.
+
+------------------------------------------------------------------------
+OPCION 1: Docker Internal (Recomendada)
+------------------------------------------------------------------------
+[SQLALCHEMY URI] -> Copie y pegue esto:
+postgresql+psycopg2://admin:admin@host.docker.internal:15432/model
+
+------------------------------------------------------------------------
+OPCION 2: Tu IP de VPN (Detectada: 172.16.19.65)
+------------------------------------------------------------------------
+Esta opcion funciona porque tu VPN esta activa.
+[SQLALCHEMY URI] -> Copie y pegue esto:
+postgresql+psycopg2://admin:admin@172.16.19.65:15432/model
+
+------------------------------------------------------------------------
+OPCION 3: Localhost (A veces funciona)
+------------------------------------------------------------------------
+[SQLALCHEMY URI] -> Copie y pegue esto:
+postgresql+psycopg2://admin:admin@localhost:15432/model
+
+========================================================================
+RESUMEN DE CAMPOS:
+Display Name: Cube_Local
+Driver: PostgreSQL
+========================================================================

@@ -1,0 +1,92 @@
+<mxfile host="65bd71144e">
+    <diagram id="US4937_Arch_Pro" name="Arquitectura Pro US4937">
+        <mxGraphModel dx="792" dy="567" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Origen de Datos (On-Premise)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#0277BD;startSize=23;fontStyle=1;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="200" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="SQL Server&lt;br/&gt;(SIGO)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontStyle=1;strokeWidth=2" parent="2" vertex="1">
+                    <mxGeometry x="40" y="60" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Tablas:&lt;br&gt;- Solicitudes&lt;br&gt;- Clientes&lt;br&gt;- Tiempos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#f9f5f5;fontStyle=0" parent="2" vertex="1">
+                    <mxGeometry x="40" y="150" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Zona de Aterrizaje (Data Lakehouse)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#EF6C00;startSize=23;fontStyle=1;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="80" width="240" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Python Script&lt;br/&gt;(Extract Load)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#FFE0B2;strokeColor=#E65100;fontStyle=1;fontColor=#000000;strokeWidth=1" parent="5" vertex="1">
+                    <mxGeometry x="40" y="60" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="DuckDB / Postgres&lt;br/&gt;(Raw Layer)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontStyle=1;strokeWidth=2" parent="5" vertex="1">
+                    <mxGeometry x="60" y="180" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Modern Data Stack (Transformación)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;startSize=23;fontStyle=1;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="80" width="240" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="dbt (Data Build Tool)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FF6B4A;strokeColor=#B03823;fontColor=#FFFFFF;fontStyle=1;strokeWidth=2" parent="8" vertex="1">
+                    <mxGeometry x="60" y="60" width="120" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Models Staging&lt;br/&gt;(Limpieza)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;fontColor=#000000;fontStyle=1" parent="8" vertex="1">
+                    <mxGeometry x="40" y="220" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Models Marts&lt;br/&gt;(Lógica 16:30)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;fontStyle=1;fontColor=#000000;strokeWidth=2" parent="8" vertex="1">
+                    <mxGeometry x="40" y="300" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Orquestación &amp;amp; Control" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;startSize=23;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="600" width="520" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Apache Airflow" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontStyle=1;strokeWidth=2" vertex="1" parent="12">
+                    <mxGeometry x="40" y="40" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Schedule: Every 2 Hours&lt;br/&gt;Retries: 3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontStyle=1" vertex="1" parent="12">
+                    <mxGeometry x="220" y="50" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Consumo (BI)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;startSize=23;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="840" y="80" width="240" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Power BI / Superset" style="shape=card;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#C62828;fontStyle=1;fontColor=#000000;strokeWidth=1" vertex="1" parent="15">
+                    <mxGeometry x="40" y="100" width="160" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="KPIs:&lt;br/&gt;- Solicitudes Recibidas&lt;br/&gt;- Programadas&lt;br/&gt;- Adicionales" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="15">
+                    <mxGeometry x="40" y="220" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="endArrow=classic;html=1;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="6">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Data Cruda" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;backgroundColor=#FFFFFF;" connectable="0" vertex="1" parent="18">
+                    <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#000000;" edge="1" parent="1" source="6" target="7">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#000000;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#000000;" edge="1" parent="1" source="9" target="10">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#000000;" edge="1" parent="1" source="10" target="11">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#000000;" edge="1" parent="1" source="11" target="16">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Tablas Marts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;backgroundColor=#FFFFFF;" connectable="0" vertex="1" parent="24">
+                    <mxGeometry x="-0.3" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="" style="endArrow=classic;startArrow=classic;html=1;dashed=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeColor=#000000;" edge="1" parent="1" source="12" target="5">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="" style="endArrow=classic;startArrow=classic;html=1;dashed=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;strokeColor=#000000;" edge="1" parent="1" source="12" target="8">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

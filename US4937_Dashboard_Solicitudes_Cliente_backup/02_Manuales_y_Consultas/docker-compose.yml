@@ -1,0 +1,44 @@
+services:
+  cube:
+    image: cubejs/cube:latest
+    ports:
+      - "4000:4000"
+      - "5432:5432"
+    env_file: .env
+    volumes:
+      - ./cube/schema:/cube/conf/schema
+      - ./cube/cube.js:/cube/conf/cube.js
+    environment:
+      - CUBEJS_DB_TYPE=mysql
+      - CUBEJS_DB_HOST=192.168.1.180
+      - CUBEJS_DB_PORT=3306
+      - CUBEJS_DB_NAME=solicitudesservicio
+      - CUBEJS_DB_USER=microservicio
+      - CUBEJS_DB_PASS=secr3t!
+      - CUBEJS_WEB_SOCKETS=true
+      - CUBEJS_DEV_MODE=true
+      - CUBEJS_PG_SQL_PORT=5432
+      - CUBEJS_SCHEMA_PATH=schema
+
+  superset:
+    build:
+      context: .
+      dockerfile: Dockerfile.superset
+    user: root
+    ports:
+      - "8088:8088"
+    environment:
+      - SUPERSET_SECRET_KEY=comsatel_vip_2026
+    volumes:
+      - superset_home:/app/superset_home
+    command: >
+      bash -c "
+      superset db upgrade;
+      superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin || true;
+      superset init;
+      /usr/bin/run-server.sh --host 0.0.0.0 --port 8088 --workers 1 --timeout 60
+      "
+
+volumes:
+  superset_home:
+

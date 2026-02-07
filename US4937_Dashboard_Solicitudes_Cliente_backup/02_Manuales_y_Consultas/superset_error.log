@@ -1,0 +1,653 @@
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+Collecting pymysql
+  Downloading pymysql-1.1.2-py3-none-any.whl (45 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.3/45.3 kB 1.1 MB/s eta 0:00:00
+Requirement already satisfied: cryptography in /usr/local/lib/python3.10/site-packages (46.0.4)
+Requirement already satisfied: mysql-connector-python in /usr/local/lib/python3.10/site-packages (9.6.0)
+Requirement already satisfied: typing-extensions>=4.13.2 in /usr/local/lib/python3.10/site-packages (from cryptography) (4.15.0)
+Requirement already satisfied: cffi>=2.0.0 in /usr/local/lib/python3.10/site-packages (from cryptography) (2.0.0)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.10/site-packages (from cffi>=2.0.0->cryptography) (3.0)
+Installing collected packages: pymysql
+Successfully installed pymysql-1.1.2
+
+[notice] A new release of pip is available: 23.0.1 -> 26.0
+[notice] To update, run: pip install --upgrade pip
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'pymysql'
+/app/.venv/lib/python3.10/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2026-02-03 07:42:22,661:INFO:alembic.runtime.migration:Context impl SQLiteImpl.
+2026-02-03 07:42:22,662:INFO:alembic.runtime.migration:Will assume non-transactional DDL.
+2026-02-03 07:42:23,072:INFO:superset.app:Pending database migrations: run 'superset db upgrade'
+WARNI [alembic.env] SQLite Database support for metadata databases will         be removed in a future version of Superset.
+INFO  [alembic.env] Starting the migration scripts.
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade f162a1dea4c4 -> ad82a75afd82, Update models to support storing the queries.
+INFO  [alembic.env] Table query already exists. Skipping...
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: duplicate column name: select_as_create_table_as
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/bin/superset", line 10, in <module>
+    sys.exit(superset())
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1442, in __call__
+    return self.main(*args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1363, in main
+    rv = self.invoke(ctx)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1830, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1830, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1226, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/flask/cli.py", line 358, in decorator
+    return __ctx.invoke(f, *args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/flask_migrate/cli.py", line 149, in upgrade
+    _upgrade(directory, revision, sql, tag, x_arg)
+  File "/app/.venv/lib/python3.10/site-packages/flask_migrate/__init__.py", line 98, in wrapped
+    f(*args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/flask_migrate/__init__.py", line 185, in upgrade
+    command.upgrade(config, revision, sql=sql, tag=tag)
+  File "/app/.venv/lib/python3.10/site-packages/alembic/command.py", line 408, in upgrade
+    script.run_env()
+  File "/app/.venv/lib/python3.10/site-packages/alembic/script/base.py", line 586, in run_env
+    util.load_python_file(self.dir, "env.py")
+  File "/app/.venv/lib/python3.10/site-packages/alembic/util/pyfiles.py", line 95, in load_python_file
+    module = load_module_py(module_id, path)
+  File "/app/.venv/lib/python3.10/site-packages/alembic/util/pyfiles.py", line 113, in load_module_py
+    spec.loader.exec_module(module)  # type: ignore
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/superset/extensions/../migrations/env.py", line 142, in <module>
+    run_migrations_online()
+  File "/app/superset/extensions/../migrations/env.py", line 133, in run_migrations_online
+    context.run_migrations()
+  File "<string>", line 8, in run_migrations
+  File "/app/.venv/lib/python3.10/site-packages/alembic/runtime/environment.py", line 946, in run_migrations
+    self.get_context().run_migrations(**kw)
+  File "/app/.venv/lib/python3.10/site-packages/alembic/runtime/migration.py", line 623, in run_migrations
+    step.migration_fn(**kw)
+  File "/app/superset/migrations/versions/2016-07-25_17-48_ad82a75afd82_add_query_model.py", line 65, in upgrade
+    op.add_column(
+  File "<string>", line 8, in add_column
+  File "<string>", line 3, in add_column
+  File "/app/.venv/lib/python3.10/site-packages/alembic/operations/ops.py", line 2157, in add_column
+    return operations.invoke(op)
+  File "/app/.venv/lib/python3.10/site-packages/alembic/operations/base.py", line 441, in invoke
+    return fn(self, operation)
+  File "/app/.venv/lib/python3.10/site-packages/alembic/operations/toimpl.py", line 170, in add_column
+    operations.impl.add_column(table_name, column, schema=schema, **kw)
+  File "/app/.venv/lib/python3.10/site-packages/alembic/ddl/impl.py", line 373, in add_column
+    self._exec(base.AddColumn(table_name, column, schema=schema))
+  File "/app/.venv/lib/python3.10/site-packages/alembic/ddl/impl.py", line 246, in _exec
+    return conn.execute(construct, params)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/ddl.py", line 80, in _execute_on_connection
+    return connection._execute_ddl(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1477, in _execute_ddl
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) duplicate column name: select_as_create_table_as
+[SQL: ALTER TABLE dbs ADD COLUMN select_as_create_table_as BOOLEAN]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+/app/.venv/lib/python3.10/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2026-02-03 07:42:26,640:INFO:alembic.runtime.migration:Context impl SQLiteImpl.
+2026-02-03 07:42:26,640:INFO:alembic.runtime.migration:Will assume non-transactional DDL.
+2026-02-03 07:42:26,895:INFO:superset.app:Pending database migrations: run 'superset db upgrade'
+Recognized Database Authentications.
+/app/.venv/lib/python3.10/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+Error! User already exists admin
+  warnings.warn(
+2026-02-03 07:42:29,833:INFO:alembic.runtime.migration:Context impl SQLiteImpl.
+2026-02-03 07:42:29,833:INFO:alembic.runtime.migration:Will assume non-transactional DDL.
+2026-02-03 07:42:30,138:INFO:superset.app:Pending database migrations: run 'superset db upgrade'
+2026-02-03 07:42:32,832:INFO:superset.security.manager:Syncing role definition
+2026-02-03 07:42:32,887:INFO:superset.security.manager:Syncing Admin perms
+2026-02-03 07:42:32,892:INFO:superset.security.manager:Syncing Alpha perms
+2026-02-03 07:42:32,897:INFO:superset.security.manager:Syncing Gamma perms
+2026-02-03 07:42:32,907:INFO:superset.security.manager:Syncing sql_lab perms
+2026-02-03 07:42:32,909:INFO:superset.security.manager:Fetching a set of all perms to lookup which ones are missing
+2026-02-03 07:42:32,914:INFO:superset.security.manager:Creating missing datasource permissions.
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: tables.uuid
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/superset/utils/decorators.py", line 260, in wrapped
+    result = func(*args, **kwargs)
+  File "/app/superset/cli/main.py", line 85, in init
+    security_manager.sync_role_definitions()
+  File "/app/superset/security/manager.py", line 1199, in sync_role_definitions
+    self.create_missing_perms()
+  File "/app/superset/security/manager.py", line 1147, in create_missing_perms
+    datasources = SqlaTable.get_all_datasources()
+  File "/app/superset/connectors/sqla/models.py", line 1853, in get_all_datasources
+    return qry.all()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return self._iter().all()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: tables.uuid
+[SQL: SELECT tables.uuid AS tables_uuid, tables.created_on AS tables_created_on, tables.changed_on AS tables_changed_on, tables.id AS tables_id, tables.description AS tables_description, tables.default_endpoint AS tables_default_endpoint, tables.is_featured AS tables_is_featured, tables.filter_select_enabled AS tables_filter_select_enabled, tables."offset" AS tables_offset, tables.cache_timeout AS tables_cache_timeout, tables.params AS tables_params, tables.perm AS tables_perm, tables.schema_perm AS tables_schema_perm, tables.catalog_perm AS tables_catalog_perm, tables.is_managed_externally AS tables_is_managed_externally, tables.external_url AS tables_external_url, tables.table_name AS tables_table_name, tables.main_dttm_col AS tables_main_dttm_col, tables.database_id AS tables_database_id, tables.fetch_values_predicate AS tables_fetch_values_predicate, tables.schema AS tables_schema, tables.catalog AS tables_catalog, tables.sql AS tables_sql, tables.is_sqllab_view AS tables_is_sqllab_view, tables.template_params AS tables_template_params, tables.extra AS tables_extra, tables.normalize_columns AS tables_normalize_columns, tables.always_filter_main_dttm AS tables_always_filter_main_dttm, tables.folders AS tables_folders, tables.created_by_fk AS tables_created_by_fk, tables.changed_by_fk AS tables_changed_by_fk 
+FROM tables 
+WHERE tables.is_sqllab_view = 0]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/bin/superset", line 10, in <module>
+    sys.exit(superset())
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1442, in __call__
+    return self.main(*args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1363, in main
+    rv = self.invoke(ctx)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1830, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 1226, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/flask/cli.py", line 358, in decorator
+    return __ctx.invoke(f, *args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/flask/cli.py", line 358, in decorator
+    return __ctx.invoke(f, *args, **kwargs)
+  File "/app/.venv/lib/python3.10/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+  File "/app/superset/utils/decorators.py", line 267, in wrapped
+    return on_error(ex)
+  File "/app/superset/utils/decorators.py", line 230, in on_error
+    raise reraise() from ex
+sqlalchemy.exc.SQLAlchemyError: ()
+[2026-02-03 07:42:33 +0000] [93] [INFO] Starting gunicorn 23.0.0
+[2026-02-03 07:42:33 +0000] [93] [INFO] Listening at: http://0.0.0.0:8088 (93)
+[2026-02-03 07:42:33 +0000] [93] [INFO] Using worker: gthread
+[2026-02-03 07:42:33 +0000] [94] [INFO] Booting worker with pid: 94
+/app/.venv/lib/python3.10/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+2026-02-03 07:42:35,342:INFO:alembic.runtime.migration:Context impl SQLiteImpl.
+2026-02-03 07:42:35,343:INFO:alembic.runtime.migration:Will assume non-transactional DDL.
+2026-02-03 07:42:35,609:INFO:superset.app:Pending database migrations: run 'superset db upgrade'
+127.0.0.1 - - [03/Feb/2026:07:42:44 +0000] "GET //health HTTP/1.1" 200 2 "-" "curl/7.88.1"
+2026-02-03 07:43:22,371:WARNING:superset.views.error_handling:Exception
+127.0.0.1 - - [03/Feb/2026:07:43:14 +0000] "GET //health HTTP/1.1" 200 2 "-" "curl/7.88.1"
+Traceback (most recent call last):
+172.19.0.1 - - [03/Feb/2026:07:43:22 +0000] "GET / HTTP/1.1" 302 223 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+172.19.0.1 - - [03/Feb/2026:07:43:22 +0000] "GET / HTTP/1.1" 302 223 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2026-02-03 07:43:22,376:ERROR:superset.views.error_handling:(sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+172.19.0.1 - - [03/Feb/2026:07:43:22 +0000] "GET /superset/welcome/ HTTP/1.1" 500 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-02-03 07:43:22,397:WARNING:superset.views.error_handling:Exception
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2026-02-03 07:43:22,397:ERROR:superset.views.error_handling:(sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+172.19.0.1 - - [03/Feb/2026:07:43:22 +0000] "GET /superset/welcome/ HTTP/1.1" 500 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+172.19.0.1 - - [03/Feb/2026:07:43:22 +0000] "GET /static/assets/b01fb73b111d937e4c09.png HTTP/1.1" 200 0 "http://localhost:8088/superset/welcome/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-02-03 07:43:37,211:WARNING:superset.views.error_handling:Exception
+172.19.0.1 - - [03/Feb/2026:07:43:22 +0000] "GET /static/assets/e3bafb62eb2592c0bb0e.png HTTP/1.1" 200 0 "http://localhost:8088/superset/welcome/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+172.19.0.1 - - [03/Feb/2026:07:43:37 +0000] "GET / HTTP/1.1" 302 223 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+172.19.0.1 - - [03/Feb/2026:07:43:37 +0000] "GET / HTTP/1.1" 302 223 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2026-02-03 07:43:37,212:ERROR:superset.views.error_handling:(sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+172.19.0.1 - - [03/Feb/2026:07:43:37 +0000] "GET /superset/welcome/ HTTP/1.1" 500 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-02-03 07:43:37,235:WARNING:superset.views.error_handling:Exception
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2026-02-03 07:43:37,236:ERROR:superset.views.error_handling:(sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user_attribute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/.venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/superset/utils/log.py", line 304, in wrapper
+    value = f(*args, **kwargs)
+  File "/app/superset/views/core.py", line 929, in welcome
+    .scalar()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2893, in scalar
+    ret = self.one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user_attribute
+[SQL: SELECT user_attribute.welcome_dashboard_id AS user_attribute_welcome_dashboard_id 
+FROM user_attribute 
+WHERE user_attribute.user_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+172.19.0.1 - - [03/Feb/2026:07:43:37 +0000] "GET /superset/welcome/ HTTP/1.1" 500 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+127.0.0.1 - - [03/Feb/2026:07:43:44 +0000] "GET //health HTTP/1.1" 200 2 "-" "curl/7.88.1"
+127.0.0.1 - - [03/Feb/2026:07:44:14 +0000] "GET //health HTTP/1.1" 200 2 "-" "curl/7.88.1"
+127.0.0.1 - - [03/Feb/2026:07:44:44 +0000] "GET //health HTTP/1.1" 200 2 "-" "curl/7.88.1"
+127.0.0.1 - - [03/Feb/2026:07:45:15 +0000] "GET //health HTTP/1.1" 200 2 "-" "curl/7.88.1"
+127.0.0.1 - - [03/Feb/2026:07:45:45 +0000] "GET //health HTTP/1.1" 200 2 "-" "curl/7.88.1"
